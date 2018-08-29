@@ -4,6 +4,9 @@ import React, { PureComponent } from 'react';
 import { requireNativeComponent, View, UIManager, DeviceEventEmitter, findNodeHandle } from 'react-native';
 import PropTypes from 'prop-types';
 
+const RSSignatureView = requireNativeComponent('RSSignatureView', SignatureCapture, {
+    nativeOnly: { onChange: true }
+});
 export default class SignatureCapture extends PureComponent {
     subscriptions = [];
 
@@ -61,12 +64,10 @@ export default class SignatureCapture extends PureComponent {
         this.subscriptions = [];
     }
 
-    RSSignatureView = requireNativeComponent('RSSignatureView', SignatureCapture, {
-        nativeOnly: { onChange: true }
-    });
+
 
     render() {
-        return <this.RSSignatureView {...this.props} onChange={this.onChange} />;
+        return <RSSignatureView {...this.props} onChange={this.onChange} />;
     }
 
     saveImage() {
